@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
+    public event Action Hurt;
     public event Action Dead;
     
     protected int Health;
@@ -17,6 +18,10 @@ public abstract class Character : MonoBehaviour
         {
             IsAlive = false;
             Dead?.Invoke();
+        }
+        else
+        {
+            Hurt?.Invoke();
         }
     }
 }
