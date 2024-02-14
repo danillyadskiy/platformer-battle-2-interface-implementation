@@ -8,7 +8,7 @@ public class EnemyAttackTrigger : MonoBehaviour
 
     private readonly float _coroutineWaitingTime = 1f;
     
-    private IEnumerator _coroutine;
+    private Coroutine _coroutine;
     private bool _isCoroutineWorking;
     
     public void OnTriggerEnter2D(Collider2D other)
@@ -16,8 +16,7 @@ public class EnemyAttackTrigger : MonoBehaviour
         if (other.TryGetComponent(out Player player))
         {
             _isCoroutineWorking = true;
-            _coroutine = Coroutine(player);
-            StartCoroutine(_coroutine);
+            _coroutine = StartCoroutine(Coroutine(player));
         }
     }
 
