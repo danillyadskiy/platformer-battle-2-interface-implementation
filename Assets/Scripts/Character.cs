@@ -5,15 +5,15 @@ public abstract class Character : MonoBehaviour
 {
     public event Action Dead;
     
-    protected int Health;
+    [SerializeField] protected HealthModel Health;
 
     public bool IsAlive { get; private set; } = true;
 
     public void GetDamage(int damage)
     {
-        Health -= damage;
+        Health.Decrease(damage);
 
-        if (Health <= 0)
+        if (Health.Value <= 0)
         {
             IsAlive = false;
             Dead?.Invoke();
